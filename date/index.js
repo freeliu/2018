@@ -16,6 +16,7 @@ function unitWarn(date) {
         console.warn('date.js warning：this library use millisecond as basic unit,please checkout your param before you use it')
     }
 }
+
 /**
  * 转化成时间类型
  * @param {String|Date|Number}date
@@ -23,7 +24,7 @@ function unitWarn(date) {
  */
 function convertToDate(date) {
     if (date instanceof Date) {
-        return date
+        return date;
     }
     if (typeof date == 'string' && date.length == 8 && !isNaN(date)) {
         date = date.slice(0, 4) + '/' + date.slice(4, 6) + '/' + date.slice(6, 8)
@@ -52,7 +53,7 @@ function convertToDate(date) {
  * @param {int}num
  * @returns {Date}
  */
-function addDate(curDate, num) {
+export function addDate(curDate, num) {
     curDate = convertToDate(curDate)
     unitWarn(curDate)
     curDate = new Date(curDate.getTime())
@@ -65,7 +66,7 @@ function addDate(curDate, num) {
  * @returns {string}
  */
 
-function toYYMMdd(date) {
+export function toYYMMdd(date) {
     // console.log(date)
     date = convertToDate(date)
     unitWarn(date)
@@ -81,7 +82,7 @@ function toYYMMdd(date) {
  * @returns {string}
  */
 
-function toMMddChinese(date) {
+export function toMMddChinese(date) {
     date = convertToDate(date)
     unitWarn(date)
     let MM = date.getMonth() + 1 > 9 ? date.getMonth() + 1 : `${date.getMonth() + 1}`
@@ -94,7 +95,7 @@ function toMMddChinese(date) {
  * @param {String|Date|Number}date
  * @returns {string}
  */
-function toYYMMddHHMMss(date) {
+export function toYYMMddHHMMss(date) {
     date = convertToDate(date)
     unitWarn(date)
     let yyyy = date.getFullYear()
@@ -106,12 +107,13 @@ function toYYMMddHHMMss(date) {
 
     return `${yyyy}-${MM}-${dd} ${hh}:${mm}:${ss}`
 }
+
 /**
  *日期转 yyyy-MM-dd HH:mm 格式
  * @param {String|Date|Number}date
  * @returns {string}
  */
-function toYYMMddHHmm(date) {
+export function toYYMMddHHmm(date) {
     date = convertToDate(date)
     unitWarn(date)
     let yyyy = date.getFullYear()
@@ -122,12 +124,13 @@ function toYYMMddHHmm(date) {
     let ss = date.getSeconds() > 9 ? date.getSeconds() : `0${date.getSeconds()}`
     return `${yyyy}-${MM}-${dd} ${hh}:${mm}`
 }
+
 /**
  *日期转 HH:mm 格式
  * @param {String|Date|Number}date
  * @returns {string}
  */
-function toHHmm(date) {
+export function toHHmm(date) {
     date = convertToDate(date)
     unitWarn(date)
     // let yyyy = date.getFullYear()
@@ -145,7 +148,7 @@ function toHHmm(date) {
  * @param {String|Date|Number}date
  * @returns {string}
  */
-function toYYMMddOnlyNumber(date) {
+export function toYYMMddOnlyNumber(date) {
     return toYYMMdd(date).replace(/-/g, '')
 }
 
@@ -154,7 +157,7 @@ function toYYMMddOnlyNumber(date) {
  * @param {String|Date|Number}date
  * @returns {string}
  */
-function getUnixTimestampMillisecond(date) {
+export function getUnixTimestampMillisecond(date) {
     date = convertToDate(date)
     unitWarn(date)
     return date.getTime()
@@ -165,7 +168,7 @@ function getUnixTimestampMillisecond(date) {
  * @param {String|Date|Number}date
  * @returns {string}
  */
-function getUnixTimestampSecond(date) {
+export function getUnixTimestampSecond(date) {
     return getUnixTimestampMillisecond(date) / 1000
 }
 
@@ -176,7 +179,7 @@ function getUnixTimestampSecond(date) {
  * @param {Number|Undefined} adultAge 法定成人年龄（默认18）
  * @returns {boolean}
  */
-function isAdult(birthday, adultAge) {
+export function isAdult(birthday, adultAge) {
     adultAge = adultAge || 18
     let now = Date.now()
     let y1 = parseInt(toYYMMdd(birthday).split('-')[0])
@@ -208,13 +211,14 @@ function isAdult(birthday, adultAge) {
     }
     return true
 }
+
 /**
  * 获取中文时间差
  *
  * @param {String|Date|Number} begin
  * @param {String|Date|Number} end
  */
-function getChineseTimeSpan(begin, end) {
+export function getChineseTimeSpan(begin, end) {
     let str = ''
     let b = getUnixTimestampSecond(begin)
     let e = getUnixTimestampSecond(end)
@@ -240,7 +244,7 @@ function getChineseTimeSpan(begin, end) {
     return str
 }
 
-export  default {
+export default {
     addDate,
     toYYMMdd,
     toYYMMddHHMMss,

@@ -1,4 +1,4 @@
-var path= require('path')
+var path= require('_02core_modules/2path')
 
 var p1='liu//a/index.html'
 

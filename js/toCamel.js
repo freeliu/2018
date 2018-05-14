@@ -31,7 +31,7 @@ function toCamel(o) {
 var obj = {
     Name: 'Object Test',
     Children: {
-        Name: 'Children Name'
+        Name: 'Children Name', 
     }
 }
 
